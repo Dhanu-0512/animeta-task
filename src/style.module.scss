@@ -1,0 +1,118 @@
+$table-border-color: #ddd;
+$table-bg-color: #fafafa;
+$table-header-bg-color: #eeeeee;
+$table-hover-bg-color: #f1f1f1;
+$input-border-color: #ccc;
+$input-focus-border-color: #007bff;
+$icon-spacing: 8px;
+$table-border-radius: 20px;
+
+//fixed widths for specific columns
+$fixed-widths: (
+  "deliverableID": 100px,
+  "deliverable": 150px,
+  "deliverableName": 200px,
+  "finalCreatorPrice": 150px,
+  "finalBrandPrice": 150px,
+  "deliverableApproved": 120px,
+  "expectedGoLiveDate": 150px,
+  "contentPublished": 120px,
+  "contentPublishedDate": 150px,
+  "postLink": 200px,
+);
+
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: center;
+  border-radius: $table-border-radius;
+
+  thead th {
+    background-color: $table-header-bg-color;
+  }
+
+  tbody tr {
+    &:nth-child(even) {
+      background-color: $table-bg-color;
+    }
+
+    &:hover {
+      background-color: $table-hover-bg-color;
+    }
+  }
+
+  th,
+  td {
+    padding: 12px;
+    border: 1px solid $table-border-color;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  th {
+    background-color: $table-header-bg-color;
+  }
+
+  td {
+    background-color: $table-bg-color;
+
+    &:hover {
+      background-color: $table-hover-bg-color;
+      cursor: pointer;
+    }
+
+    span {
+      display: block;
+      padding: 8px;
+
+      svg {
+        margin-right: $icon-spacing;
+      }
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 8px;
+      font-size: 16px;
+      border: 1px solid $input-border-color;
+      box-sizing: border-box;
+
+      &:focus {
+        outline: none;
+        border-color: $input-focus-border-color;
+      }
+    }
+
+    &.deliverables {
+      span {
+        display: flex;
+        align-items: center;
+        padding: 8px;
+
+        svg {
+          margin-right: $icon-spacing;
+        }
+      }
+    }
+  }
+
+  // Fixed widths to columns
+  th,
+  td {
+    @each $key, $value in $fixed-widths {
+      &.#{key} {
+        width: $value;
+      }
+    }
+  }
+}
